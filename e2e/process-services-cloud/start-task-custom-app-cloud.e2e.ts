@@ -127,7 +127,7 @@ describe('Start Task', () => {
         tasksCloudDemoPage.editTaskFilterCloudComponent()
             .clickCustomiseFilterHeader()
             .setStateFilterDropDown('CREATED')
-            .clearAssignment();
+            .clearAssignee();
         tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkContentIsDisplayed(unassignedTaskName);
     });
 
@@ -140,7 +140,7 @@ describe('Start Task', () => {
         tasksCloudDemoPage.editTaskFilterCloudComponent()
             .clickCustomiseFilterHeader()
             .setStateFilterDropDown('CREATED')
-            .clearAssignment();
+            .clearAssignee();
         tasksCloudDemoPage.taskListCloudComponent().getDataTable().waitForTableBody();
         tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkContentIsDisplayed(unassignedTaskName);
         let taskId = tasksCloudDemoPage.taskListCloudComponent().getIdCellValue(unassignedTaskName);

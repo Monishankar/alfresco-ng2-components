@@ -81,7 +81,7 @@ describe('Edit task filters and task list properties', () => {
             browser.driver.sleep(5000);
             configEditorPage.enterConfiguration('{' +
                 '"properties": [' +
-                '"appName",' + '"state",' + '"assignment",' +
+                '"appName",' + '"status",' + '"assignee",' +
                 '"taskName",' + '"parentTaskId",' + '"priority",' +
                 '"standAlone",' + '"owner",' + '"processDefinitionId",' + '"processInstanceId",' +
                 '"lastModifiedFrom",' + '"lastModifiedTo",' + '"sort",' + '"order"' +
@@ -160,7 +160,7 @@ describe('Edit task filters and task list properties', () => {
             expect(tasksCloudDemoPage.getActiveFilterName()).toBe('My Tasks');
 
             tasksCloudDemoPage.editTaskFilterCloudComponent().setProcessInstanceId(processInstance.entry.id)
-                .setStateFilterDropDown('ALL').clearAssignment();
+                .setStateFilterDropDown('ALL').clearAssignee();
             tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkSpinnerIsDisplayed();
             tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkSpinnerIsNotDisplayed();
 
@@ -181,7 +181,7 @@ describe('Edit task filters and task list properties', () => {
             tasksCloudDemoPage.myTasksFilter().checkTaskFilterIsDisplayed();
             expect(tasksCloudDemoPage.getActiveFilterName()).toBe('My Tasks');
 
-            tasksCloudDemoPage.editTaskFilterCloudComponent().setAssignment('admin.adf');
+            tasksCloudDemoPage.editTaskFilterCloudComponent().setAssignee('admin.adf');
 
             tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkContentIsDisplayed(createdTask.entry.name);
             tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkContentIsNotDisplayed(notAssigned.entry.name);
@@ -191,7 +191,7 @@ describe('Edit task filters and task list properties', () => {
             tasksCloudDemoPage.myTasksFilter().checkTaskFilterIsDisplayed();
             expect(tasksCloudDemoPage.getActiveFilterName()).toBe('My Tasks');
 
-            tasksCloudDemoPage.editTaskFilterCloudComponent().setAssignment('invalid');
+            tasksCloudDemoPage.editTaskFilterCloudComponent().setAssignee('invalid');
 
             expect(tasksCloudDemoPage.taskListCloudComponent().getNoTasksFoundMessage()).toEqual(noTasksFoundMessage);
         });
@@ -229,7 +229,7 @@ describe('Edit task filters and task list properties', () => {
             tasksCloudDemoPage.myTasksFilter().checkTaskFilterIsDisplayed();
             expect(tasksCloudDemoPage.getActiveFilterName()).toBe('My Tasks');
 
-            tasksCloudDemoPage.editTaskFilterCloudComponent().setStateFilterDropDown('ALL').clearAssignment().setOwner('admin.adf');
+            tasksCloudDemoPage.editTaskFilterCloudComponent().setStateFilterDropDown('ALL').clearAssignee().setOwner('admin.adf');
 
             tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkContentIsDisplayed(notAssigned.entry.name);
             tasksCloudDemoPage.taskListCloudComponent().getDataTable().checkContentIsDisplayed(createdTask.entry.name);

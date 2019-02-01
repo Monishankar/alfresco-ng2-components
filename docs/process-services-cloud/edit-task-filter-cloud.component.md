@@ -31,7 +31,7 @@ Edits Task Filter Details.
 | ---- | ---- | ------------- | ----------- |
 | appName | `string` |  | (required) Name of the app. |
 | id | `string` | "" | (required) The id of the Task filter. |
-| filterProperties | `string []` | `['state', 'assignment', 'sort', 'order']` | List of task filter properties to display. |
+| filterProperties | `string []` | `['status', 'assignee', 'sort', 'order']` | List of task filter properties to display. |
 | showFilterActions | `boolean` | `true` | Toggles edit task filter actions. |
 | showTitle | `boolean` | `true` | Toggles edit task filter title. |
 
@@ -69,21 +69,22 @@ given below:
 | **_taskName_** | Name of the task |
 | **_parentTaskId_** | ID of the task's parent task |
 | **_priority_** | Task priority |
+| **_createdDate_** | Date the task was created |
 | **_standAlone_** | Standalone status of the task |
 | **_owner_** | User ID of the task's owner |
 | **_processDefinitionId_** | Process definition ID |
 | **_processDefinitionKey_** | Process definition key |
 | **_processInstanceId_** | Process instance ID |
-| **_lastModified_** | Date the task was last modified |
+| **_lastModified_** | Date the task was last modified. If lastModified defined the component will show the range **_lastModifiedFrom_**, **_lastModifiedTo_**|
 | **_sort_** | Field on which the filter results will be sorted (doesn't participate in the filtering itself). Can be "id", "name", "createdDate", "priority", "processDefinitionId". |
 | **_order_** | Sort ordering of the filter results it can be ASC or DESC (doesn't participate in the filtering itself). |
 
 
-By default, the **_state_**, **_assignment_**, **_sort_** and **_order_** properties
+By default, the **_status_**, **_assignee_**, **_sort_** and **_order_** properties
 are displayed in the editor. However, you can also choose which properties
 to show using the `filterProperties` array. For example, the code below initializes
-the editor with the **_appName_**, **_processInstanceId_**, **_startDate_** and
-**_lastModifiedTo_** properties:
+the editor with the **_appName_**, **_processInstanceId_**, **_createdDate_** and
+**_lastModified_** properties:
 
 ```ts
 import { UserProcessModel } from '@alfresco/adf-core';
@@ -93,8 +94,8 @@ export class SomeComponent implements OnInit {
     filterProperties: string[] = [
         "appName",
         "processInstanceId",
-        "startDate",
-        "lastModifiedTo"];
+        "createdDate",
+        "lastModified"];
 
     onFilterChange(filter: TaskFilterCloudModel) {
         console.log('On filter change: ', filter);
